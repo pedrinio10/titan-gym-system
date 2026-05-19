@@ -143,15 +143,15 @@
 </script>
 
 <script>
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
 
-window.addEventListener("load", () => {
-
-    const loader = document.getElementById("loader");
-
-    loader.classList.add("loader-hidden");
-
-});
-
+        if (loader) {
+            setTimeout(() => {
+                loader.classList.add("loader-hidden");
+            }, 500);
+        }
+    });
 </script>
 
 </body>
