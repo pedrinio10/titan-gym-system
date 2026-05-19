@@ -1,0 +1,365 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Dashboard Admin
+{% endblock %}
+
+{% block content %}
+
+<section class="admin-layout text-white">
+
+    <aside class="admin-sidebar">
+
+        <h3 class="text-warning fw-bold mb-4">
+            TITAN ADMIN
+        </h3>
+
+        <a href="{% url 'dashboard_admin' %}" class="admin-link active">
+            📊 Dashboard
+        </a>
+
+        <a href="#socios" class="admin-link">
+            👥 Socios
+        </a>
+
+        <a href="#asistencias" class="admin-link">
+            ✅ Asistencias
+        </a>
+
+        <a href="#pagos" class="admin-link">
+            💳 Pagos
+        </a>
+
+        <a href="{% url 'inicio' %}" class="admin-link">
+            🌐 Ver sitio
+        </a>
+
+    </aside>
+
+    <main class="admin-content">
+
+    <h1 class="fw-bold mb-5">
+        Dashboard Administrativo
+    </h1>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+            <div class="card bg-dark p-4 text-center h-100 dashboard-card">
+                <h5 class="text-warning">Socios Activos</h5>
+                <h2 class="fw-bold">{{ total_socios }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-dark p-4 text-center h-100 dashboard-card">
+                <h5 class="text-warning">Ingresos Totales</h5>
+                <h2 class="fw-bold">${{ ingresos_totales }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-dark p-4 text-center h-100 dashboard-card">
+                <h5 class="text-warning">Pagos Totales</h5>
+                <h2 class="fw-bold">{{ pagos_totales }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-dark p-4 text-center h-100 dashboard-card">
+                <h5 class="text-warning">Membresías Vencidas</h5>
+                <h2 class="fw-bold">{{ membresias_vencidas }}</h2>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-dark p-4 text-center h-100 dashboard-card">
+                <h5 class="text-warning">Socios Suspendidos</h5>
+                <h2 class="fw-bold text-danger">{{ socios_suspendidos }}</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="pagos" class="mt-5">
+        <h2 class="fw-bold mb-4">Pagos Recientes</h2>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-striped align-middle">
+                <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Plan</th>
+                    <th>Monto</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for pago in pagos_recientes %}
+                    <tr>
+                        <td>{{ pago.usuario.username }}</td>
+                        <td>{{ pago.plan }}</td>
+                        <td>${{ pago.monto }}</td>
+                        <td>{{ pago.estado }}</td>
+                        <td>{{ pago.fecha|date:"d/m/Y H:i" }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            Todavía no hay pagos registrados.
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h2 class="fw-bold mb-4">Ingresos Mensuales</h2>
+
+        <div class="card bg-dark p-4 dashboard-card">
+            <canvas id="graficoIngresos"></canvas>
+        </div>
+    </div>
+
+    <div class="mt-5 mb-5">
+        <h2 class="fw-bold mb-4">Próximos Vencimientos</h2>
+
+        <div class="row g-4">
+            {% for membresia in proximos_vencimientos %}
+                <div class="col-md-4">
+                    <div class="card bg-dark p-4 h-100 dashboard-card">
+                        <h4 class="text-warning">
+                            {{ membresia.usuario.username }}
+                        </h4>
+
+                        <p class="mb-2">
+                            Plan: {{ membresia.plan }}
+                        </p>
+
+                        <p class="mb-2">
+                            Vence: {{ membresia.fecha_fin }}
+                        </p>
+
+                        <span class="badge bg-warning text-dark">
+                            Próximo a vencer
+                        </span>
+
+                        <a href="https://wa.me/54{{ membresia.usuario.perfil.telefono }}?text=Hola%20{{ membresia.usuario.username }}%20👋%20Tu%20membresía%20en%20Titan%20Gym%20vence%20el%20{{ membresia.fecha_fin }}.%20Podés%20renovarla%20desde%20la%20web%20💪"
+                           target="_blank"
+                           class="btn btn-success btn-sm mt-3 w-100">
+
+                            Avisar por WhatsApp
+
+                        </a>
+
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <div class="alert alert-success">
+                        No hay membresías próximas a vencer.
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    <div id="asistencias" class="mt-5">
+
+        <h2 class="fw-bold mb-4">
+            Historial de Asistencias
+        </h2>
+
+
+        <div class="table-responsive"
+             style="
+                max-height: 400px;
+                overflow-y: auto;
+             ">
+
+
+            <table class="table table-dark table-striped align-middle">
+
+                <thead>
+                    <tr>
+                        <th>Usuario</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for asistencia in asistencias_recientes %}
+
+                        <tr>
+
+                            <td>
+                                {{ asistencia.usuario.username }}
+                            </td>
+
+                            <td>
+                                {{ asistencia.fecha|date:"d/m/Y H:i" }}
+                            </td>
+
+                            <td>
+
+                                {% if asistencia.estado == "PERMITIDO" %}
+
+                                    <span class="badge bg-success">
+                                        Permitido
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="badge bg-danger">
+                                        Denegado
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                    {% empty %}
+
+                        <tr>
+                            <td colspan="3" class="text-center">
+                                Todavía no hay asistencias registradas.
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+        
+    <div id="socios" class="mt-5">
+
+        <h2 class="fw-bold mb-4">
+            Socios Registrados
+        </h2>
+
+        <form method="GET" class="mb-4">
+            <div class="input-group">
+                <input type="text"
+                       name="q"
+                       class="form-control"
+                       placeholder="Buscar socio por usuario o email"
+                       value="{{ busqueda }}">
+
+                <button class="btn btn-warning">
+                    Buscar
+                </button>
+            </div>
+        </form>
+
+        <a href="{% url 'crear_socio' %}" class="btn btn-warning mb-4">
+            + Agregar Socio
+        </a>
+
+        <div class="table-responsive">
+            <table class="table table-dark table-striped align-middle">
+                <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Fecha de alta</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for socio in socios %}
+                    <tr>
+                        <td>{{ socio.username }}</td>
+                        <td>{{ socio.email }}</td>
+                        <td>{{ socio.date_joined|date:"d/m/Y" }}</td>
+                        <td>
+                            <a href="{% url 'editar_membresia' socio.id %}"
+                               class="btn btn-sm btn-warning">
+                                Editar membresía
+                            </a>
+
+                            {% if socio.is_active %}
+                                <a href="{% url 'suspender_socio' socio.id %}"
+                                   class="btn btn-sm btn-outline-danger">
+                                    Suspender
+                                </a>
+                            {% else %}
+                                <a href="{% url 'reactivar_socio' socio.id %}"
+                                   class="btn btn-sm btn-outline-success">
+                                    Reactivar
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            Todavía no hay socios registrados.
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    </main>
+
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('graficoIngresos');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {{ labels_grafico|safe }},
+            datasets: [{
+                label: 'Ingresos',
+                data: {{ datos_grafico|safe }},
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'white'
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        color: 'white'
+                    }
+                },
+                y: {
+                    ticks: {
+                        color: 'white'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

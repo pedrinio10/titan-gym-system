@@ -1,0 +1,300 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Mi Panel | Titan Gym
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5 text-white">
+
+    <div class="card bg-dark p-4 mt-4 mb-5">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+            <div>
+                <h4 class="fw-bold text-warning">
+                    Último Pago
+                </h4>
+
+                <p class="mb-1">
+                    Plan Mensual
+                </p>
+
+                <small class="text-secondary">
+                    Pagado el 17 May 2026
+                </small>
+            </div>
+
+            <div class="text-end">
+
+                <h2 class="fw-bold">
+                    $25.000
+                </h2>
+
+                <span class="badge bg-success">
+                    Aprobado
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="d-flex align-items-center mb-5">
+
+        <div class="avatar-circle me-4">
+            {{ request.user.username|first|upper }}
+        </div>
+
+        <div>
+
+            <h1 class="fw-bold mb-1">
+                Bienvenido, {{ request.user.username }}
+            </h1>
+
+            <p class="text-secondary mb-0">
+                Gestioná tu membresía y pagos
+            </p>
+
+        </div>
+
+    </div>
+    {% if membresia.esta_vencida %}
+
+        <div class="alert alert-danger mb-4">
+            Tu membresía está vencida. Renovala para seguir entrenando.
+        </div>
+
+    {% elif membresia.dias_restantes <= 5 %}
+
+        <div class="alert alert-warning mb-4">
+            Tu membresía vence en {{ membresia.dias_restantes }} días. Te recomendamos renovarla.
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-success mb-4">
+            Tu membresía está activa. Te quedan {{ membresia.dias_restantes }} días disponibles.
+        </div>
+
+    {% endif %}
+
+    {% if membresia %}
+
+        <div class="card bg-dark p-4">
+
+            <h3 class="mb-4">
+                Hola, {{ request.user.username }}
+            </h3>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <h5 class="text-warning">
+                        Plan
+                    </h5>
+
+                    <p>
+                        {{ membresia.plan }}
+                    </p>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="text-warning">
+                        Inicio
+                    </h5>
+
+                    <p>
+                        {{ membresia.fecha_inicio }}
+                    </p>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="text-warning">
+                        Vencimiento
+                    </h5>
+
+                    <p>
+                        {{ membresia.fecha_fin }}
+                    </p>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="text-warning">
+                        Estado
+                    </h5>
+
+                    <p>
+                        {% if membresia.esta_vencida %}
+                            <span class="badge bg-danger px-3 py-2">
+                                Vencida
+                            </span>
+                        {% else %}
+                            <span class="badge bg-success px-3 py-2">
+                                Activa
+                            </span>
+                        {% endif %}
+                    </p>
+                </div>
+
+                <div class="col-md-3">
+                    <h5 class="text-warning">
+                        Días Restantes
+                    </h5>
+
+                    <p>
+                        {{ membresia.dias_restantes }}
+                    </p>
+                </div>
+
+                <div class="progress mt-3" style="height: 12px;">
+                    <div class="progress-bar bg-warning"
+                         role="progressbar"
+                         style="width: {{ membresia.porcentaje_restante }}%;">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-warning">
+
+            No tenés una membresía activa.
+
+        </div>
+
+    {% endif %}
+
+
+    <div class="card bg-dark p-4 mt-5 text-center">
+
+        <h3 class="fw-bold text-warning mb-4">
+            QR de Acceso
+        </h3>
+
+        <p class="text-secondary">
+            Mostrá este QR al ingresar al gimnasio
+        </p>
+
+        {% if qr_base64 %}
+
+            <img src="data:image/png;base64,{{ qr_base64 }}"
+                 class="img-fluid mx-auto"
+                 style="max-width: 250px; border-radius: 20px;">
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="mt-5">
+
+    <h2 class="fw-bold mb-4">
+        Gestionar Membresía
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card bg-dark p-4 h-100 text-center">
+                <h4 class="text-warning">Plan Mensual</h4>
+                <p>Acceso por 30 días</p>
+                <h3>$25.000</h3>
+
+                <a href="{% url 'pagar_membresia' 'mensual' %}"
+                   class="btn btn-warning mt-3">
+                    Pagar mensual
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card bg-dark p-4 h-100 text-center">
+                <h4 class="text-warning">Plan Trimestral</h4>
+                <p>Acceso por 90 días</p>
+                <h3>$65.000</h3>
+
+                <a href="{% url 'pagar_membresia' 'trimestral' %}"
+                   class="btn btn-warning mt-3">
+                    Pagar trimestral
+                </a>
+            </div>
+        </div>
+
+        {% if membresia %}
+            <div class="col-md-4">
+                <div class="card bg-warning text-dark p-4 h-100 text-center">
+                    <h4 class="fw-bold">Renovar actual</h4>
+                    <p>Renová tu último plan: {{ membresia.plan }}</p>
+                    <h3>Continuar</h3>
+
+                    <a href="{% url 'pagar_membresia' membresia.plan|lower %}"
+                       class="btn btn-dark mt-3">
+                        Renovar
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>
+
+    <div class="mt-5">
+
+        <h2 class="fw-bold mb-4">
+            Historial de Pagos
+        </h2>
+
+        {% if pagos %}
+
+            <div class="table-responsive">
+
+                <table class="table table-dark table-striped align-middle">
+
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Plan</th>
+                            <th>Monto</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for pago in pagos %}
+
+                            <tr>
+                                <td>{{ pago.fecha|date:"d/m/Y H:i" }}</td>
+                                <td>{{ pago.plan }}</td>
+                                <td>${{ pago.monto }}</td>
+                                <td>{{ pago.estado }}</td>
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-secondary">
+                Todavía no tenés pagos registrados.
+            </div>
+
+        {% endif %}
+
+    </div>
+</section>
+
+{% endblock %}
+

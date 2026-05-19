@@ -1,0 +1,100 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+Editar Membresía
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5 text-white">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-6">
+
+            <div class="card bg-dark p-5">
+
+                <h1 class="fw-bold mb-4 text-warning">
+                    Editar Membresía
+                </h1>
+
+                <p class="mb-4">
+                    Usuario:
+                    <strong>{{ usuario.username }}</strong>
+                </p>
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Plan
+                        </label>
+
+                        <select name="plan"
+                                class="form-select">
+
+                            <option value="MENSUAL"
+                                {% if membresia.plan == "MENSUAL" %}
+                                    selected
+                                {% endif %}>
+                                Mensual
+                            </option>
+
+                            <option value="TRIMESTRAL"
+                                {% if membresia.plan == "TRIMESTRAL" %}
+                                    selected
+                                {% endif %}>
+                                Trimestral
+                            </option>
+
+                            <option value="BIMESTRAL"
+                                {% if membresia.plan == "BIMESTRAL" %}
+                                    selected
+                                {% endif %}>
+                                Bimestral
+                            </option>
+
+                            <option value="DIARIO"
+                                {% if membresia.plan == "DIARIO" %}
+                                    selected
+                                {% endif %}>
+                                Diario
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Fecha de vencimiento
+                        </label>
+
+                        <input type="date"
+                               name="fecha_fin"
+                               class="form-control"
+                               value="{{ membresia.fecha_fin|date:'Y-m-d' }}">
+
+                    </div>
+
+                    <button type="submit"
+                            class="btn btn-warning w-100 py-3 fw-bold">
+                        Guardar cambios
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+

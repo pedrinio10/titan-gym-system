@@ -1,0 +1,537 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}
+Inicio | Titan Gym
+{% endblock %}
+
+{% block content %}
+
+<section class="hero-section d-flex align-items-center text-white">
+
+    <div class="container text-center" data-aos="fade-up">
+
+        <h1 class="display-1 fw-bold">
+            TRANSFORMÁ TU CUERPO
+        </h1>
+
+        <p class="lead mt-4">
+            Entrená en el mejor gimnasio de Córdoba
+        </p>
+
+        <a href="#planes" class="btn btn-warning btn-lg mt-3 px-5 py-3">
+            Ver Planes
+        </a>
+
+        <div class="hero-stats mt-5">
+
+            <div class="hero-stat">
+                <h3>+500</h3>
+                <p>Socios activos</p>
+            </div>
+
+            <div class="hero-stat">
+                <h3>24/7</h3>
+                <p>Seguimiento online</p>
+            </div>
+
+            <div class="hero-stat">
+                <h3>+5</h3>
+                <p>Años entrenando</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- SOBRE NOSOTROS -->
+
+<section id="sobre-nosotros" class="about-section py-5 text-white">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <div class="col-md-6" data-aos="fade-right">
+
+                <h2 class="display-5 fw-bold mb-4">
+                    Más que un gimnasio, una comunidad
+                </h2>
+
+                <p class="lead text-secondary">
+                    En Titan Gym combinamos entrenamiento, tecnología y seguimiento personalizado para ayudarte a alcanzar tus objetivos.
+                </p>
+
+                <p class="text-secondary">
+                    Contamos con espacios de musculación, entrenamiento funcional y planes flexibles para que puedas elegir la membresía que mejor se adapte a tu ritmo.
+                </p>
+
+            </div>
+
+            <div class="col-md-6" data-aos="fade-left">
+
+                <div class="about-card p-4">
+
+                    <h4 class="text-warning fw-bold mb-3">
+                        ¿Por qué elegirnos?
+                    </h4>
+
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-3">✔ Equipamiento moderno</li>
+                        <li class="mb-3">✔ Planes diarios, mensuales y trimestrales</li>
+                        <li class="mb-3">✔ Pagos online con Mercado Pago</li>
+                        <li class="mb-3">✔ Control de membresía desde tu panel</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BENEFICIOS -->
+
+<section id="beneficios" class="py-5 bg-black text-white">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="display-5 fw-bold">
+                Entrená con beneficios reales
+            </h2>
+
+            <p class="text-secondary">
+                Todo pensado para que tu experiencia sea simple, rápida y profesional.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6" data-aos="zoom-in">
+                <div class="benefit-card text-center p-4 h-100">
+                    <h3 class="text-warning mb-3">💳</h3>
+                    <h4>Pagos Online</h4>
+                    <p class="text-secondary">
+                        Aboná tu pase desde la web de forma rápida y segura.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6" data-aos="zoom-in">
+                <div class="benefit-card text-center p-4 h-100">
+                    <h3 class="text-warning mb-3">📅</h3>
+                    <h4>Membresía Automática</h4>
+                    <p class="text-secondary">
+                        Tu plan se activa y podés ver los días restantes desde tu panel.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6" data-aos="zoom-in">
+                <div class="benefit-card text-center p-4 h-100">
+                    <h3 class="text-warning mb-3">🏋️</h3>
+                    <h4>Entrenamiento Completo</h4>
+                    <p class="text-secondary">
+                        Espacios preparados para fuerza, funcional y acondicionamiento.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-6" data-aos="zoom-in">
+                <div class="benefit-card text-center p-4 h-100">
+
+                    <h3 class="text-warning mb-3">📋</h3>
+
+                    <h4>Entrenamiento Personalizado</h4>
+
+                    <p class="text-secondary">
+                        Recibí una rutina personalizada adaptada a tus objetivos, con seguimiento y actualización mensual.
+                    </p>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DIA DE PRUEBA -->
+
+<section class="trial-section py-5 text-white">
+
+    <div class="container">
+
+        <div class="trial-card p-5 text-center">
+
+            <span class="badge bg-warning text-dark mb-3">
+                Día de prueba
+            </span>
+
+            <h2 class="display-5 fw-bold mb-3">
+                Probá Titan Gym antes de elegir tu plan
+            </h2>
+
+            <p class="lead text-secondary mb-4">
+                Vení a conocer nuestras instalaciones, entrená un día y comprobá si el gimnasio cumple con tus expectativas.
+            </p>
+
+            <a href="https://wa.me/5493510000000"
+               target="_blank"
+               class="btn btn-warning btn-lg px-5">
+                Solicitar día de prueba
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- PLANES -->
+
+<section id="planes" class="py-5 bg-black text-white">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="display-4 fw-bold">
+                Elegí tu membresía
+            </h2>
+
+            <p class="text-secondary">
+                Planes flexibles para entrenar a tu ritmo y pagar online.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <!-- PLAN DIARIO -->
+
+            <div class="col-md-4">
+
+                <div class="card bg-dark text-white h-100 text-center p-4">
+
+                    <h3 class="fw-bold">
+                        Pase Diario
+                    </h3>
+
+                    <h2 class="display-5 text-warning my-4">
+                        $3000
+                    </h2>
+
+                    <ul class="list-unstyled mt-3 mb-4">
+                       <li>✔ Acceso al gimnasio</li>
+                       <li>✔ Uso de máquinas</li>
+                       <li>✔ Panel online</li>
+                    </ul>
+
+                    <a href="{% url 'pagar_membresia' 'diario' %}" class="btn btn-warning mt-3">
+                        Elegir Plan
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- PLAN MENSUAL -->
+
+            <div class="col-md-4">
+
+                <div class="card bg-warning text-dark h-100 text-center p-4">
+
+                    <span class="badge bg-dark mb-3">
+                        Más elegido
+                    </span>
+
+                    <h3 class="fw-bold">
+                        Plan Mensual
+                    </h3>
+
+                    <h2 class="display-5 my-4">
+                        $25000
+                    </h2>
+
+                    <p>
+                        Acceso ilimitado por 30 días
+                    </p>
+
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>✔ Acceso al gimnasio</li>
+                        <li>✔ Uso de máquinas</li>
+                        <li>✔ Panel online</li>
+                    </ul>
+
+                    <a href="{% url 'pagar_membresia' 'mensual' %}" class="btn btn-dark mt-3">
+                        Elegir Plan
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- PLAN TRIMESTRAL -->
+
+            <div class="col-md-4">
+
+                <div class="card bg-dark text-white h-100 text-center p-4">
+
+                    <h3 class="fw-bold">
+                        Plan Trimestral
+                    </h3>
+
+                    <h2 class="display-5 text-warning my-4">
+                        $65000
+                    </h2>
+
+                    <p>
+                        Acceso ilimitado por 90 días
+                    </p>
+
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>✔ Acceso al gimnasio</li>
+                        <li>✔ Uso de máquinas</li>
+                        <li>✔ Panel online</li>
+                    </ul>
+
+                    <a href="{% url 'pagar_membresia' 'trimestral' %}" class="btn btn-warning mt-3">
+                        Elegir Plan
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GALERIA -->
+
+<section class="gallery-section py-5 text-white">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="display-5 fw-bold">
+                Nuestras Instalaciones
+            </h2>
+
+            <p class="text-secondary">
+                Espacios modernos diseñados para llevar tu entrenamiento al máximo nivel.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="gallery-item gallery-1"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="gallery-item gallery-2"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="gallery-item gallery-3"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ENTRENADORES -->
+
+<section class="trainers-section py-5 text-white">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">
+                Nuestro Equipo
+            </h2>
+
+            <p class="text-secondary">
+                Profesionales preparados para acompañarte en cada entrenamiento.
+            </p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-4" data-aos="flip-left">
+                <div class="trainer-card text-center p-4">
+                    <div class="trainer-avatar">M</div>
+                    <h4 class="mt-3">Martín Gómez</h4>
+                    <p class="text-warning mb-2">Musculación</p>
+                    <p class="text-secondary">
+                        Especialista en fuerza, hipertrofia y técnica de entrenamiento.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4" data-aos="flip-left">
+                <div class="trainer-card text-center p-4">
+                    <div class="trainer-avatar">L</div>
+                    <h4 class="mt-3">Lucía Fernández</h4>
+                    <p class="text-warning mb-2">Funcional</p>
+                    <p class="text-secondary">
+                        Entrenamientos dinámicos para mejorar resistencia y movilidad.
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-md-4" data-aos="flip-left">
+                <div class="trainer-card text-center p-4">
+                    <div class="trainer-avatar">D</div>
+                    <h4 class="mt-3">Diego Ramos</h4>
+                    <p class="text-warning mb-2">Preparación Física</p>
+                    <p class="text-secondary">
+                        Planes personalizados para objetivos deportivos y rendimiento.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACTO -->
+
+<section id="contacto" class="contact-section py-5 text-white">
+
+    <div class="container">
+
+        <div class="row g-5 align-items-center">
+
+            <div class="col-md-6">
+
+                <h2 class="display-5 fw-bold mb-4">
+                    Visitá Titan Gym
+                </h2>
+
+                <p class="text-secondary">
+                    Estamos en Córdoba. Escribinos por WhatsApp o acercate para conocer nuestras instalaciones.
+                </p>
+
+                <div class="mt-4">
+                    <p>📍 Av. Fuerza Fitness 1234, Córdoba</p>
+                    <p>🕒 Lunes a Sábado de 7:00 a 22:00</p>
+                    <p>📲 +54 9 351 000 0000</p>
+                </div>
+
+                <a href="https://wa.me/5493510000000"
+                   target="_blank"
+                   class="btn btn-warning btn-lg mt-3">
+                    Consultar por WhatsApp
+                </a>
+
+            </div>
+
+            <div class="col-md-6">
+
+                <div class="map-placeholder">
+                    <span>Mapa / Ubicación</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer class="footer-section pt-5 pb-4 text-white">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <img src="{% static 'img/logo-gym.png' %}"
+                     alt="Titan Gym"
+                     class="footer-logo mb-3">
+
+                <p class="text-secondary">
+                    Plataforma web para gimnasio con membresías, pagos online y gestión de socios.
+                </p>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <h5 class="text-warning fw-bold mb-3">
+                    Links rápidos
+                </h5>
+
+                <ul class="list-unstyled footer-links">
+                    <li><a href="{% url 'inicio' %}">Inicio</a></li>
+                    <li><a href="{% url 'inicio' %}#sobre-nosotros">Sobre nosotros</a></li>
+                    <li><a href="{% url 'inicio' %}#beneficios">Beneficios</a></li>
+                    <li><a href="{% url 'inicio' %}#planes">Planes</a></li>
+                    <li><a href="{% url 'inicio' %}#contacto">Contacto</a></li>
+                </ul>
+
+            </div>
+
+            <div class="col-md-4">
+
+                <h5 class="text-warning fw-bold mb-3">
+                    Contacto
+                </h5>
+
+                <p class="text-secondary mb-2">📍 Córdoba, Argentina</p>
+                <p class="text-secondary mb-2">📲 +54 9 351 000 0000</p>
+                <p class="text-secondary mb-3">✉️ contacto@titangym.com</p>
+
+                <a href="https://wa.me/5493510000000"
+                   target="_blank"
+                   class="btn btn-warning btn-sm fw-bold">
+                    WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+        <hr class="footer-line my-4">
+
+        <div class="text-center">
+
+            <small class="text-secondary">
+                © 2026 Titan Gym. Todos los derechos reservados.
+            </small>
+
+        </div>
+
+    </div>
+
+</footer>
+
+{% endblock %}
+
