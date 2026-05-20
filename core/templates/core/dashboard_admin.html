@@ -150,15 +150,17 @@ Dashboard Admin
 
                         {% if membresia.usuario.perfil.telefono %}
 
-                        <a href="https://wa.me/549{{ membresia.usuario.perfil.telefono }}?text=Hola%20{{ membresia.usuario.username }}%20👋%20Tu%20membresía%20en%20Titan%20Gym%20vence%20el%20{{ membresia.fecha_fin|date:'d/m/Y' }}.%20Podés%20renovarla%20desde%20la%20web%20💪"
+                        <a href="https://wa.me/549{{ membresia.usuario.perfil.telefono }}?text={% firstof 'Hola' %}%20{{ membresia.usuario.username }}%20Tu%20membresia%20en%20Titan%20Gym%20vence%20el%20{{ membresia.fecha_fin|date:'d/m/Y' }}.%20Podes%20renovarla%20desde%20la%20web."
                            target="_blank"
                            class="btn btn-success btn-sm mt-3 w-100">
+
                             Avisar por WhatsApp
+
                         </a>
 
                         {% else %}
 
-                        <span class="badge bg-secondary mt-3">
+                        <span class="badge bg-secondary mt-3 w-100 py-2">
                             Sin teléfono cargado
                         </span>
 
