@@ -732,3 +732,25 @@ body{
 
 }
 
+.btn,
+a.btn{
+    position: relative;
+    z-index: 10;
+    pointer-events: auto;
+}
+
+.dashboard-card{
+    position: relative;
+}
+
+.dashboard-card::before{
+    z-index: 1;
+}
+
+.dashboard-card > *{
+    position: relative;
+    z-index: 2;
+}
+
+
+
