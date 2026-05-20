@@ -223,12 +223,19 @@ def dashboard_admin(request):
         .order_by("mes")
     )
 
-    labels_grafico = []
-    datos_grafico = []
+    labels_grafico = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", ]
+    datos_grafico = [0, 0, 0, 0, 0, 0]
+    meses = {"January": 0, "February": 1, "March": 2, "April": 3, "May": 4, "June": 5, }
 
     for item in ingresos_por_mes:
-        labels_grafico.append(item["mes"].strftime("%B %Y"))
-        datos_grafico.append(float(item["total"]))
+
+        mes_nombre = item["mes"].strftime("%B")
+
+        if mes_nombre in meses:
+
+            index = meses[mes_nombre]
+
+            datos_grafico[index] = float(item["total"])
 
     busqueda = request.GET.get("q", "")
 
